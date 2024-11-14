@@ -1,0 +1,14 @@
+[package]
+name = "cphp"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "cphp"
+path = "src/main.rs"
+
+[[bin]]
+name = "vm"
+path = "src/vm.rs"
+
+[dependencies]
