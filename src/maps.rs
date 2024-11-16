@@ -1,5 +1,5 @@
 // Registers
-pub const R0:i32 = 16; // 0x10
+pub const R0:u8 = 16; // 0x10
 // pub const R1:i32 = 17;
 // pub const R2:i32 = 18;
 // pub const R3:i32 = 19;
@@ -17,8 +17,8 @@ pub const R0:i32 = 16; // 0x10
 // pub const RF:i32 = 31; // 0x1F
 
 // Operands
-pub const OP_EXIT:i32 = 95; // 0x5F
-pub const OP_MOV:i32 = 65;
-pub const OP_ADD:i32 = 66;
-pub const OP_SUB:i32 = 67;
-pub const OP_PRT:i32 = 81;
+pub const OP_EXIT:u8 = 95; // 0x5F
+pub const OP_MOV:u8 = 65; // 0x41
+pub const OP_ADD:u8 = 66; // 0x42
+pub const OP_SUB:u8 = 67; // 0x43
+pub const OP_PRT:u8 = 81; // 51
