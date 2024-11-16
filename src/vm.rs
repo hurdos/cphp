@@ -1,5 +1,7 @@
 mod maps;
 
+use std::collections::HashMap;
+
 use maps::*;
 
 fn main() {
@@ -12,24 +14,32 @@ fn main() {
         OP_EXIT,
     ];
 
+    let mut rmap = HashMap::new();
+    rmap.insert(R0, 0);
+
     let mut ip = 0;
     loop {
-        let mut ins = &insts[ip];
+        let ins = &insts[ip];
         match ins {
             &OP_MOV => {
-                mov(&insts[ip+1], &insts[ip+2]);
+                println!("MOV");
+                rmap.insert(insts[ip+2], insts[ip+1]);
                 ip += 2;
             },
             &OP_ADD => {
-                add(&insts[ip+1], &insts[ip+2]);
+                println!("ADD");
+                let sum = rmap.get(&insts[ip+2]).unwrap() + insts[ip+1];
+                rmap.insert(insts[ip+2], sum);
                 ip += 2;
             },
             &OP_SUB => {
-                sub(&insts[ip+1], &insts[ip+2]);
+                println!("SUB");
+                let sub = rmap.get(&insts[ip+2]).unwrap() - insts[ip+1];
+                rmap.insert(insts[ip+2], sub);
                 ip += 2;
             },
             &OP_PRT => {
-                println!("PRT");
+                println!("PRT {:?}", rmap.get(&insts[ip+1]).unwrap());
                 ip += 1;
             },
             &OP_EXIT => {
@@ -40,16 +50,4 @@ fn main() {
         }
         ip += 1;
     }
-}
-
-fn mov(value:&i32, register:&i32) {
-    println!("MOV");
-}
-
-fn add(value:&i32, register:&i32) {
-    println!("ADD");
-}
-
-fn sub(value:&i32, register:&i32) {
-    println!("SUB");
 }
